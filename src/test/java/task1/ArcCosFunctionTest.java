@@ -6,24 +6,31 @@ import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import org.junit.runner.RunWith;
 import org.junit.Test;
 import org.junit.Assert;
-import org.apache.commons.math3.util.Precision;
 
 @RunWith(DataProviderRunner.class)
 public class ArcCosFunctionTest {
     double inaccuracy = 0.1;
 
     @DataProvider
-    public static Object[][] data(){
-        return new Object[][]{
-                {0.5, 1.04},
-                {0.6, 0.92}
-        };
+    public static Object[] dataCorrect(){
+        return new Object[]{-1.0, -0.8, -0.5, 0.0, 0.5, 0.7, 1.0};
+    }
+
+    @DataProvider
+    public static Object[] dataIncorrect(){
+        return new Object[]{-1.1, 1.1, Double.NaN, null};
     }
 
     @Test
-    @UseDataProvider("data")
-    public void test(double x, double result){
+    @UseDataProvider("dataCorrect")
+    public void testCorrect(Double x){
         System.out.println(ArcCosFunction.arcCos(x));
-        Assert.assertTrue(Math.abs(ArcCosFunction.arcCos(x) - Math.abs(result)) <= inaccuracy);
+        Assert.assertTrue(Math.abs(ArcCosFunction.arcCos(x) - Math.acos(x)) <= inaccuracy);
+    }
+
+    @Test
+    @UseDataProvider("dataIncorrect")
+    public void testIncorrect(Double x){
+        Assert.assertTrue(Double.isNaN(ArcCosFunction.arcCos(x)));
     }
 }
