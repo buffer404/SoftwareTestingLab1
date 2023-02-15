@@ -6,6 +6,10 @@ public class ArcCosFunction {
             return Double.NaN;
         }
 
+        if (Math.abs(x) == 1){
+            return x < 0 ? Math.PI : 0;
+        }
+
         int step = 1;
         double curElem = 1;
         double seriesSum = 0;

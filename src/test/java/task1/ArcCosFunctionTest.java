@@ -24,7 +24,6 @@ public class ArcCosFunctionTest {
     @Test
     @UseDataProvider("dataCorrect")
     public void testCorrect(Double x){
-        System.out.println(ArcCosFunction.arcCos(x));
         Assert.assertTrue(Math.abs(ArcCosFunction.arcCos(x) - Math.acos(x)) <= inaccuracy);
     }
 
