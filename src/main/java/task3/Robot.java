@@ -48,7 +48,10 @@ public class Robot implements Creature{
     }
 
     public String watch() {
-        return "Вижу плечо хз";
+        if (this.location == LocationInRoom.IN_FRONT_OF_TRILLIAN) {
+            return "Вижу плечо";
+        }
+        return "Не вижу ничего";
     }
 
     public RobotState getRobotState() {

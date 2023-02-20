@@ -2,7 +2,7 @@ package task1;
 
 public class ArcCosFunction {
     public static double arcCos(Double x) {
-        if (x == null || Math.abs(x) > 1) {
+        if (x == null || Math.abs(x) > 1 || x.isInfinite()) {
             return Double.NaN;
         }
 
@@ -14,7 +14,7 @@ public class ArcCosFunction {
         double curElem = 1;
         double seriesSum = 0;
 
-        while (Math.abs(curElem) > 0.00001) {
+        while (Math.abs(curElem) > 0.1) {
             curElem = Math.pow(x, step) / calculateFactorial(step);
             seriesSum += curElem;
             step += 2;

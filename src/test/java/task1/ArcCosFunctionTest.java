@@ -18,7 +18,7 @@ public class ArcCosFunctionTest {
 
     @DataProvider
     public static Object[] dataIncorrect(){
-        return new Object[]{-1.1, 1.1, Double.NaN, null};
+        return new Object[]{-1.1, 1.1, Double.NaN, null, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY};
     }
 
     @Test

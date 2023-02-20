@@ -63,4 +63,26 @@ public class RobotTest {
         Assert.assertTrue(robot.getCurrentRoom() == room);
         Assert.assertTrue(robot.getCurrentRoom().getPeopleIn().size() == 2);
     }
+
+    @Test
+    public void toEndTest() throws Exception {
+        Room robotRoom = new Room(false, new ArrayList<>());
+        Robot robot = new Robot(RobotState.SIT, LocationInRoom.IN_THE_CORNER, robotRoom);
+        ArrayList<Creature> noTrillinaPeopleIn = new ArrayList<>();
+        noTrillinaPeopleIn.add(new Human("NOTrillian"));
+        Room noTrillianRoom = new Room(false, noTrillinaPeopleIn);
+        ArrayList<Creature> trillinaPeopleIn = new ArrayList<>();
+        trillinaPeopleIn.add(new Human("Trillian"));
+        Room trillianRoom = new Room(false, trillinaPeopleIn);
+        ArrayList<Room> rooms = new ArrayList<>();
+        rooms.add(noTrillianRoom);
+        rooms.add(trillianRoom);
+        robot.goToTrillianRoom(robot.findTrillian(new Area(rooms)));
+        Assert.assertTrue(robot.getCurrentRoom() == trillianRoom);
+        robot.go();
+        Watcher watcher = new Watcher();
+        Assert.assertTrue(watcher.watch(robot).getTryValue() == TryValue.HEROIC);
+        robot.stop();
+        Assert.assertTrue(robot.watch().equals("Вижу плечо"));
+    }
 }
