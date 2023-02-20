@@ -6,4 +6,8 @@ public class Try {
     public Try(TryValue tryValue) {
         this.tryValue = tryValue;
     }
+
+    public TryValue getTryValue() {
+        return tryValue;
+    }
 }
